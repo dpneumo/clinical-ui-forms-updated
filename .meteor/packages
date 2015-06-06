@@ -6,10 +6,11 @@
 
 less
 jquery
-moment
+momentjs:moment
 random
 standard-app-packages
-ui
+blaze
 
-bootstrap-3
-session-extended-api
+manuelschoebel:less-boostrap-3
+clinical:session-extended-api
+konecty:change-case

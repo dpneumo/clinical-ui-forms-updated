@@ -3,9 +3,7 @@ Meteor.methods({
   createNewCustomer: function (options) {
     try{
       console.log('received a new customer: ' + JSON.stringify(options));
-
       options = options || {};
-
       // TODO:  add validation functions
       //        if (!(typeof options.text === "string" && options.text.length)){
       //            throw new Meteor.Error(400, "Required parameter missing");
@@ -26,6 +24,7 @@ Meteor.methods({
       return CustomerAccounts.insert({
         FirstName: options.FirstName,
         LastName: options.LastName,
+        FullName: options.FirstName + ' ' + options.LastName,
         Company: options.Company,
         Address: options.Address,
         City: options.City,
@@ -41,5 +40,43 @@ Meteor.methods({
     }catch(error){
       console.log(error);
     }
+  },
+
+  deleteCustomer: function (selectedCustomer) {
+    try{
+      console.log('deleted a customer: ' + JSON.stringify(selectedCustomer));
+      return CustomerAccounts.remove( {_id: selectedCustomer} );
+      Meteor.flush();
+    }catch(error){
+      console.log(error);
+    }
+  },
+
+  modifyCustomer: function(selectedCustomer, options){
+    try{
+      console.log('updated a customer: ' + JSON.stringify(options));
+      options = options || {};
+      // TODO:  add validation functions
+      return CustomerAccounts.update( { _id: selectedPatient },
+                                      {
+                                        FirstName: options.FirstName,
+                                        LastName: options.LastName,
+                                        FullName: options.FirstName + ' ' + options.LastName,
+                                        Company: options.Company,
+                                        Address: options.Address,
+                                        City: options.City,
+                                        County: options.County,
+                                        State: options.State,
+                                        ZIP: options.ZIP,
+                                        Phone: options.Phone,
+                                        Fax: options.Fax,
+                                        Email: options.Email,
+                                        Web: options.Web
+                                      });
+      Meteor.flush();
+    }catch(error){
+      console.log(error);
+    }
   }
+
 });

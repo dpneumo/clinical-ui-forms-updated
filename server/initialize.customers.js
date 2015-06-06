@@ -10,7 +10,7 @@
 
       // and add some data
       var data = [
-        {   "FirstName":"Essie",
+        { "FirstName":"Essie",
           "LastName":"Vaill",
           "Company":"Litronic Industries",
           "Address":"14225 Hancock Dr",
@@ -501,10 +501,9 @@
 
       console.log('Adding records to CustomerAccounts collection.');
       for (var i = 0; i < data.length; i++) {
-        CustomerAccounts.insert({
+        Meteor.call('createNewCustomer', {
           FirstName:   data[i].FirstName,
           LastName:  data[i].LastName,
-          FullName: data[i].FirstName + ' ' + data[i].LastName,
           Company:  data[i].Company,
           Address:  data[i].Address,
           City:  data[i].City,
