@@ -2,18 +2,18 @@
   "modules" : {
     "normalize"            : true,
     "print"                : false,
-    "glyphicons"           : false,
+    "glyphicons"           : true,
 
     "scaffolding"          : true,
-    "type"                 : false,
+    "type"                 : true,
     "code"                 : false,
     "grid"                 : true,
     "tables"               : true,
     "forms"                : true,
     "buttons"              : true,
 
-    "component-animations" : false,
-    "dropdowns"            : false,
+    "component-animations" : true,
+    "dropdowns"            : true,
     "button-groups"        : true,
     "input-groups"         : true,
     "navs"                 : true,
@@ -26,11 +26,11 @@
     "badges"               : false,
     "jumbotron"            : false,
     "thumbnails"           : false,
-    "alerts"               : false,
+    "alerts"               : true,
     "progress-bars"        : false,
     "media"                : false,
     "list-group"           : true,
-    "panels"               : false,
+    "panels"               : true,
     "responsive-embed"     : false,
     "wells"                : false,
     "close"                : false,
@@ -41,14 +41,14 @@
     "carousel"             : false,
 
     "affix"                : false,
-    "alert"                : false,
-    "button"               : false,
+    "alert"                : true,
+    "button"               : true,
     "collapse"             : false,
     "scrollspy"            : false,
     "tab"                  : false,
     "transition"           : false,
 
-    "utilities"            : false,
+    "utilities"            : true,
     "responsive-utilities" : false
   }
 }

@@ -57,17 +57,17 @@
           <input id="birthdateInput" class="form-control" type="date" placeholder="01/01/2013" value="{{Birthday}}" {{generic_enabled}}>
           <div class="spacer"></div>
 
-          <input id="monthInput" class="form-control" type="month" placeholder="January" value="2012-01" {{generic_enabled}}>
+          <input id="numberInput" class="form-control" type="number" placeholder="123456" value="{{Number}}" {{generic_enabled}}>
+          <div class="spacer"></div>
+        </div>
+        <div class="col col-lg-6 ">
+          <input id="timeInput" class="form-control" type="time" placeholder="12:30 AM" value="{{Time}}" {{generic_enabled}}>
           <div class="spacer"></div>
 
           <input id="weekInput" class="form-control" type="week" placeholder="Monday" value="{{Week}}" {{generic_enabled}}>
           <div class="spacer"></div>
 
-          <input id="timeInput" class="form-control" type="time" placeholder="12:30 AM" value="{{Time}}" {{generic_enabled}}>
-          <div class="spacer"></div>
-        </div>
-        <div class="col col-lg-6 ">
-          <input id="numberInput" class="form-control" type="number" placeholder="123456" value="{{Number}}" {{generic_enabled}}>
+          <input id="monthInput" class="form-control" type="month" placeholder="January" value="2012-01" {{generic_enabled}}>
           <div class="spacer"></div>
 
           <input id="colorInput" class="form-control" type="color" placeholder="#33ff88" value="#{{Color}}" {{generic_enabled}}>
@@ -100,18 +100,18 @@
 
         {{#if isNewTask}}
         <div class="padded col col-lg-12">
-          <button id="newUserButton" type="button" class="fullwidth btn btn-info" width="100%">Create New User!</button>
+          <button id="newCustomerButton" type="button" class="fullwidth btn btn-info" width="100%">Create New Customer!</button>
         </div>
         {{/if}}
 
         {{#if isDeletingTask}}
           <div class="padded col col-lg-12 with-bottom-padding">
             <div class="alert alert-danger">
-              <h4 class="centered">Are you sure you want to delete this user?</h4>
+              <h4 class="centered">Are you sure you want to delete this customer?</h4>
 
               <div class="container">
                 <div class="col col-lg-6">
-                  <button id="deleteUserButton" type="button" class="fullwidth btn btn-danger">Delete</button>
+                  <button id="deleteCustomerButton" type="button" class="fullwidth btn btn-danger">Delete</button>
                 </div>
                 <div class="col col-lg-6">
                   <button id="cancelDeleteButton" type="button" class="fullwidth btn btn-danger">Cancel</button>

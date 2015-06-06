@@ -31,9 +31,6 @@ fieldEnabled = function(fieldName){
       return "readonly";
     }
 };
-taskCheck = function(task){
-  return (Session.get('current_task') === task)
-};
 
 // Field Events & Helpers
 var fields = [
@@ -77,8 +74,12 @@ Template.customerFormTemplate.helpers({
       return "readonly";
     }
   },
-  isNewTask: function() {taskCheck('new')},
-  isDeletingTask: function() {taskCheck('delete')},
+  isNewTask: function() {
+    return Session.get('current_task') === 'new'
+  },
+  isDeletingTask: function() {
+    return Session.get('current_task') === 'delete'
+  },
   user: function() {
     console.log('getting user...');
     try {
@@ -108,50 +109,60 @@ Template.customerFormTemplate.helpers({
 
 // Misc Events
 Template.customerFormTemplate.events({
-  'click #newUserButton': function() {
-    console.log('creating new user...');
+  'click #newCustomerButton': function() {
+    console.log('creating new customer...');
     try {
-      // TODO:  add validation functions
       if ($('#firstNameInput').val().length) {
-        Meteor.call('createNewCustomer', {
-          FirstName: $('#firstNameInput').val(),
-          LastName: $('#lastNameInput').val(),
-          Company: $('#companyInput').val(),
-          Address: $('#addressInput').val(),
-          City: $('#cityInput').val(),
-          County: $('#countyInput').val(),
-          State: $('#stateInput').val(),
-          ZIP: $('#zipInput').val(),
-          Phone: $('#phoneInput').val(),
-          Fax: $('#faxInput').val(),
-          Email: $('#emailInput').val(),
-          Web: $('#webInput').val(),
-          Password: $('#passwordInput').val(),
-          Date: $('#dateInput').val(),
-          Birthdate: $('#birthdateInput').val(),
-          Month: $('#monthInput').val(),
-          Week: $('#weekInput').val(),
-          Time: $('#timeInput').val(),
-          Number: $('#numberInput').val(),
-          Color: $('#colorInput').val()
-        }, function(error, customer) {
-          console.log('error: ' + error);
-          console.log('customer: ' + customer);
-        });
+        Meteor.call('createNewCustomer',
+                    { FirstName: $('#firstNameInput').val(),
+                      LastName: $('#lastNameInput').val(),
+                      Company: $('#companyInput').val(),
+                      Address: $('#addressInput').val(),
+                      City: $('#cityInput').val(),
+                      County: $('#countyInput').val(),
+                      State: $('#stateInput').val(),
+                      ZIP: $('#zipInput').val(),
+                      Phone: $('#phoneInput').val(),
+                      Fax: $('#faxInput').val(),
+                      Email: $('#emailInput').val(),
+                      Web: $('#webInput').val(),
+                      Password: $('#passwordInput').val(),
+                      Date: $('#dateInput').val(),
+                      Birthdate: $('#birthdateInput').val(),
+                      Month: $('#monthInput').val(),
+                      Week: $('#weekInput').val(),
+                      Time: $('#timeInput').val(),
+                      Number: $('#numberInput').val(),
+                      Color: $('#colorInput').val()
+                    },
+                    function(error, customer) {
+                      console.log('error: ' + error);
+                      console.log('customer: ' + customer);
+                    });
       } else {
         Session.set("createError",
           "Customer needs a name, or why bother?");
-      }
+      };
       evt.target.value = '';
     } catch (err) {
       console.log(err);
-    }
-
+    };
     Session.set('current_task', 'view');
   },
 
-  'click #deleteUserButton': function() {
-    CustomerAccounts.remove(Session.get('selected_user'));
+  'click #deleteCustomerButton': function() {
+    var selectedCustomer = Session.get('selected_user');
+    console.log('deleting customer: ' + selectedCustomer);
+    try{
+      Meteor.call('deleteCustomer',
+                  selectedCustomer,
+                  function(error, customer) {
+                    console.log('error: ' + error);
+                    console.log('customer: ' + customer);
+      });
+    } catch (error) {
+      console.log(error);
+    };
     Session.set('current_task', 'view');
   },
 

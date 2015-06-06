@@ -64,11 +64,8 @@ genericUserDisplayObject = {
 
 
 toggleSession = function(variable) {
-  if (Session.get(variable)) {
-    Session.set(variable, false);
-  } else {
-    Session.set(variable, true);
-  }
+  var newValue = !Session.get(variable);
+  Session.set(variable, newValue);
 };
 
 activateInput = function(input) {
