@@ -11,6 +11,6 @@ random
 standard-app-packages
 blaze
 
-manuelschoebel:less-boostrap-3
+nemo64:bootstrap
 clinical:session-extended-api
 konecty:change-case
