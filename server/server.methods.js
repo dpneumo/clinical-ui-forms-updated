@@ -1,8 +1,8 @@
 
 Meteor.methods({
-  createNewCustomer: function (options) {
+  createCustomer: function (options) {
     try{
-      console.log('received a new customer: ' + JSON.stringify(options));
+      console.log('created a customer: ' + JSON.stringify(options));
       options = options || {};
       // TODO:  add validation functions
       //        if (!(typeof options.text === "string" && options.text.length)){
@@ -42,17 +42,7 @@ Meteor.methods({
     }
   },
 
-  deleteCustomer: function (selectedCustomer) {
-    try{
-      console.log('deleted a customer: ' + JSON.stringify(selectedCustomer));
-      return CustomerAccounts.remove( {_id: selectedCustomer} );
-      Meteor.flush();
-    }catch(error){
-      console.log(error);
-    }
-  },
-
-  modifyCustomer: function(selectedCustomer, options){
+  updateCustomer: function(selectedCustomer, options){
     try{
       console.log('updated a customer: ' + JSON.stringify(options));
       options = options || {};
@@ -73,6 +63,16 @@ Meteor.methods({
                                         Email: options.Email,
                                         Web: options.Web
                                       });
+      Meteor.flush();
+    }catch(error){
+      console.log(error);
+    }
+  },
+
+  deleteCustomer: function (selectedCustomer) {
+    try{
+      console.log('deleted a customer: ' + JSON.stringify(selectedCustomer));
+      return CustomerAccounts.remove( {_id: selectedCustomer} );
       Meteor.flush();
     }catch(error){
       console.log(error);

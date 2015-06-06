@@ -1,0 +1,49 @@
+<template name="createCustomerBtn">
+  <button id="createCustomerButton"
+          type="button"
+          class="fullwidth btn btn-info"
+          width="100%">
+    Create New Customer!
+  </button>
+</template>
+
+<template name="updateCustomerBtn">
+  <button id="updateCustomerButton"
+          type="button"
+          class="fullwidth btn btn-info"
+          width="100%">
+    Update Customer!
+  </button>
+</template>
+
+<template name="deleteCheck">
+  <div class="alert alert-danger col col-lg-12">
+    <h4 class="centered">Are you sure you want to delete this customer?</h4>
+    <div class="container col col-lg-12">
+      <div class="col col-lg-6">
+        {{> deleteCustomerBtn}}
+      </div>
+      <div class="col col-lg-6">
+        {{> cancelDeleteBtn}}
+      </div>
+    </div>
+  </div>
+</template>
+
+
+<template name="deleteCustomerBtn">
+  <button id="deleteCustomerButton"
+          type="button"
+          class="fullwidth btn btn-danger">
+    Delete
+  </button>
+</template>
+
+
+<template name="cancelDeleteBtn">
+  <button id="cancelDeleteButton"
+          type="button"
+          class="fullwidth btn btn-danger">
+    Cancel
+  </button>
+</template>

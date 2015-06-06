@@ -1,5 +1,6 @@
-Session.set('user_search_term', '');
+Session.set('account_search_term', '');
 Session.set('selected_user', '');
+
 Session.set('global_edit', false);
 
 Session.set('editing_first_name', false);
@@ -18,7 +19,6 @@ Session.set('editing_web', false);
 
 
 
-Session.set('account_search_term', '');
 
 
 

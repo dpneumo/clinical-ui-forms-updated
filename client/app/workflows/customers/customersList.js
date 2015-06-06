@@ -1,7 +1,7 @@
 //-------------------------------------------------------------
 //  Index Functions
 
-Template.customersListTemplate.helpers({
+Template.customersList.helpers({
   customersList: function() {
     try {
       return CustomerAccounts.find({
@@ -27,16 +27,17 @@ Template.customersListTemplate.helpers({
 });
 
 
-Template.customersListItemTemplate.events({
+Template.customersListItem.events({
   'click .list-group-item': function(event, template) {
     Session.set('selected_user', this._id);
     Session.set('current_task', 'view');
     Session.set('global_edit', false);
-  },
+  }
+});
 
+Template.customerSearchInput.events({
   'keyup #customerSearchInput': function(event, template) {
     try {
-      //Session.set('user_search_term', $('#customerSearchInput').val());
       Session.set('account_search_term', $('#customerSearchInput').val());
       console.log($('#customerSearchInput').val());
       Meteor.flush();

@@ -77,6 +77,9 @@ Template.customerFormTemplate.helpers({
   isNewTask: function() {
     return Session.get('current_task') === 'new'
   },
+  isEditingTask: function() {
+    return Session.get('current_task') === 'edit'
+  },
   isDeletingTask: function() {
     return Session.get('current_task') === 'delete'
   },
@@ -109,11 +112,52 @@ Template.customerFormTemplate.helpers({
 
 // Misc Events
 Template.customerFormTemplate.events({
-  'click #newCustomerButton': function() {
+
+  'click #createCustomerButton': function() {
     console.log('creating new customer...');
-    try {
-      if ($('#firstNameInput').val().length) {
-        Meteor.call('createNewCustomer',
+    var firstNameExists = $('#firstNameInput').val().length
+    if (!firstNameExists) {
+      Session.set("createError", "Customer needs a name, or why bother?");
+      Session.set('current_task', 'view');
+    } else {
+      try { Meteor.call('createCustomer',
+                      { FirstName: $('#firstNameInput').val(),
+                        LastName: $('#lastNameInput').val(),
+                        Company: $('#companyInput').val(),
+                        Address: $('#addressInput').val(),
+                        City: $('#cityInput').val(),
+                        County: $('#countyInput').val(),
+                        State: $('#stateInput').val(),
+                        ZIP: $('#zipInput').val(),
+                        Phone: $('#phoneInput').val(),
+                        Fax: $('#faxInput').val(),
+                        Email: $('#emailInput').val(),
+                        Web: $('#webInput').val(),
+                        Password: $('#passwordInput').val(),
+                        Date: $('#dateInput').val(),
+                        Birthdate: $('#birthdateInput').val(),
+                        Month: $('#monthInput').val(),
+                        Week: $('#weekInput').val(),
+                        Time: $('#timeInput').val(),
+                        Number: $('#numberInput').val(),
+                        Color: $('#colorInput').val()
+                      },
+                      function(error, customer) {
+                        console.log('error: ' + error);
+                        console.log('customer: ' + customer);
+                      });
+            evt.target.value = '';
+      } catch (error) {
+        console.log(error);
+      };
+    Session.set('current_task', 'view');
+    };
+  },
+
+  'click #updateCustomerBtn': function() {
+    var selectedCustomer = Session.get('selected_user');
+    console.log('updating customer: ' + selectedCustomer);
+    try { Meteor.call('updateCustomer', selectedCustomer,
                     { FirstName: $('#firstNameInput').val(),
                       LastName: $('#lastNameInput').val(),
                       Company: $('#companyInput').val(),
@@ -139,13 +183,8 @@ Template.customerFormTemplate.events({
                       console.log('error: ' + error);
                       console.log('customer: ' + customer);
                     });
-      } else {
-        Session.set("createError",
-          "Customer needs a name, or why bother?");
-      };
-      evt.target.value = '';
-    } catch (err) {
-      console.log(err);
+    } catch (error) {
+      console.log(error);
     };
     Session.set('current_task', 'view');
   },
@@ -153,13 +192,11 @@ Template.customerFormTemplate.events({
   'click #deleteCustomerButton': function() {
     var selectedCustomer = Session.get('selected_user');
     console.log('deleting customer: ' + selectedCustomer);
-    try{
-      Meteor.call('deleteCustomer',
-                  selectedCustomer,
-                  function(error, customer) {
-                    console.log('error: ' + error);
-                    console.log('customer: ' + customer);
-      });
+    try{ Meteor.call('deleteCustomer', selectedCustomer,
+                   function(error, customer) {
+                     console.log('error: ' + error);
+                     console.log('customer: ' + customer);
+                   });
     } catch (error) {
       console.log(error);
     };

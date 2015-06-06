@@ -99,26 +99,20 @@
         <!--</div>-->
 
         {{#if isNewTask}}
-        <div class="padded col col-lg-12">
-          <button id="newCustomerButton" type="button" class="fullwidth btn btn-info" width="100%">Create New Customer!</button>
-        </div>
+          <div class="padded col col-lg-12 with-bottom-padding">
+            {{> createCustomerBtn}}
+          </div>
+        {{/if}}
+
+        {{#if isEditingTask}}
+          <div class="padded col col-lg-12 with-bottom-padding">
+            {{> updateCustomerBtn}}
+          </div>
         {{/if}}
 
         {{#if isDeletingTask}}
           <div class="padded col col-lg-12 with-bottom-padding">
-            <div class="alert alert-danger">
-              <h4 class="centered">Are you sure you want to delete this customer?</h4>
-
-              <div class="container">
-                <div class="col col-lg-6">
-                  <button id="deleteCustomerButton" type="button" class="fullwidth btn btn-danger">Delete</button>
-                </div>
-                <div class="col col-lg-6">
-                  <button id="cancelDeleteButton" type="button" class="fullwidth btn btn-danger">Cancel</button>
-                </div>
-              </div>
-
-            </div>
+            {{> deleteCheck}}
           </div>
         {{/if}}
       </div>
