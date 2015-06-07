@@ -47,26 +47,26 @@ fields.forEach(function(fieldName){
   // Events for field
   var clickEventName = 'click #' + fieldName + 'Input'
   var mouseoutEventName = 'mouseout #' + fieldName + 'Input'
-  Template.customerFormTemplate.events({
+  Template.customerForm.events({
     // Desktop Clicks - Editing
     clickEventName: function(){doEvent(fieldName, true)},
     // Mobile Tabs - Editing
     mouseoutEventName: function(){doEvent(fieldName, false)}
   });
-  Template.customerFormTemplate.events(
+  Template.customerForm.events(
     // Submit or Stop Editing
     addOkAndCancelEvents(fieldName)
   );
 
   // Helpers for field
   var fnName = fieldName + '_enabled'
-  Template.customerFormTemplate.helpers({
+  Template.customerForm.helpers({
     fnName: function(){fieldEnabled(fieldName)}
   });
 });
 
 // Misc Helpers
-Template.customerFormTemplate.helpers({
+Template.customerForm.helpers({
   generic_enabled: function() {
     if (Session.get('global_edit')) {
       return "enabled";
@@ -107,103 +107,5 @@ Template.customerFormTemplate.helpers({
     } catch (error) {
       console.log(error);
     }
-  }
-});
-
-// Misc Events
-Template.customerFormTemplate.events({
-
-  'click #createCustomerButton': function() {
-    console.log('creating new customer...');
-    var firstNameExists = $('#firstNameInput').val().length
-    if (!firstNameExists) {
-      Session.set("createError", "Customer needs a name, or why bother?");
-      Session.set('current_task', 'view');
-    } else {
-      try { Meteor.call('createCustomer',
-                      { FirstName: $('#firstNameInput').val(),
-                        LastName: $('#lastNameInput').val(),
-                        Company: $('#companyInput').val(),
-                        Address: $('#addressInput').val(),
-                        City: $('#cityInput').val(),
-                        County: $('#countyInput').val(),
-                        State: $('#stateInput').val(),
-                        ZIP: $('#zipInput').val(),
-                        Phone: $('#phoneInput').val(),
-                        Fax: $('#faxInput').val(),
-                        Email: $('#emailInput').val(),
-                        Web: $('#webInput').val(),
-                        Password: $('#passwordInput').val(),
-                        Date: $('#dateInput').val(),
-                        Birthdate: $('#birthdateInput').val(),
-                        Month: $('#monthInput').val(),
-                        Week: $('#weekInput').val(),
-                        Time: $('#timeInput').val(),
-                        Number: $('#numberInput').val(),
-                        Color: $('#colorInput').val()
-                      },
-                      function(error, customer) {
-                        console.log('error: ' + error);
-                        console.log('customer: ' + customer);
-                      });
-            evt.target.value = '';
-      } catch (error) {
-        console.log(error);
-      };
-    Session.set('current_task', 'view');
-    };
-  },
-
-  'click #updateCustomerBtn': function() {
-    var selectedCustomer = Session.get('selected_user');
-    console.log('updating customer: ' + selectedCustomer);
-    try { Meteor.call('updateCustomer', selectedCustomer,
-                    { FirstName: $('#firstNameInput').val(),
-                      LastName: $('#lastNameInput').val(),
-                      Company: $('#companyInput').val(),
-                      Address: $('#addressInput').val(),
-                      City: $('#cityInput').val(),
-                      County: $('#countyInput').val(),
-                      State: $('#stateInput').val(),
-                      ZIP: $('#zipInput').val(),
-                      Phone: $('#phoneInput').val(),
-                      Fax: $('#faxInput').val(),
-                      Email: $('#emailInput').val(),
-                      Web: $('#webInput').val(),
-                      Password: $('#passwordInput').val(),
-                      Date: $('#dateInput').val(),
-                      Birthdate: $('#birthdateInput').val(),
-                      Month: $('#monthInput').val(),
-                      Week: $('#weekInput').val(),
-                      Time: $('#timeInput').val(),
-                      Number: $('#numberInput').val(),
-                      Color: $('#colorInput').val()
-                    },
-                    function(error, customer) {
-                      console.log('error: ' + error);
-                      console.log('customer: ' + customer);
-                    });
-    } catch (error) {
-      console.log(error);
-    };
-    Session.set('current_task', 'view');
-  },
-
-  'click #deleteCustomerButton': function() {
-    var selectedCustomer = Session.get('selected_user');
-    console.log('deleting customer: ' + selectedCustomer);
-    try{ Meteor.call('deleteCustomer', selectedCustomer,
-                   function(error, customer) {
-                     console.log('error: ' + error);
-                     console.log('customer: ' + customer);
-                   });
-    } catch (error) {
-      console.log(error);
-    };
-    Session.set('current_task', 'view');
-  },
-
-  'click #cancelDeleteButton': function() {
-    Session.set('current_task', 'view');
   }
 });
