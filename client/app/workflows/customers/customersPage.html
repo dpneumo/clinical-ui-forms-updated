@@ -1,6 +1,7 @@
 <template name="customersPage">
+  {{# if currentUser}}
     <div id="customersPage" class="fullheight padded">
-        <div class="container doesnt-overlap-header">
+        <div class="container">
             <div id="sidebarPanel" class="col col-lg-3 panel with-rounded-corners">
                 {{> customersList }}
             </div>
@@ -9,4 +10,5 @@
             </div>
         </div>
     </div>
+  {{/if}}
 </template>

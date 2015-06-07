@@ -14,3 +14,5 @@ blaze
 nemo64:bootstrap
 clinical:session-extended-api
 konecty:change-case
+accounts-ui
+accounts-password
