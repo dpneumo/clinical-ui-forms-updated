@@ -29,39 +29,8 @@ okCancelEvents = function(selector, callbacks) {
   return events;
 };
 
-
-
-// Generic template interface for user objects.
-
-genericUserDisplayObject = {
-  userName: function() {
-    return Meteor.user().profile.name;
-  },
-  userAvatar: function() {
-    try {
-      var src = "images/placeholder-240x240.gif";
-
-      // CONFLICT?
-      // this wants to be Meteor.user().profile so the default image displays if there's no profile
-      // but, I think it's also causing crashes elsewhere if the Meteor.
-      if (Meteor.user().profile) {
-        src = $.trim(Meteor.user().profile.avatar);
-      }
-      console.log('profile avatar src: ' + src);
-      return src;
-    } catch (err) {
-      console.log(err);
-    }
-  },
-  isAdmin: function() {
-    if (Meteor.user().profile.role === "Administrator") {
-      return true;
-    } else {
-      return false;
-    }
-  }
-};
-
+// These are not actually ever used.
+// Probably should delete them
 
 toggleSession = function(variable) {
   var newValue = !Session.get(variable);

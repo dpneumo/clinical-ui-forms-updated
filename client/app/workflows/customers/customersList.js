@@ -29,7 +29,7 @@ Template.customersList.helpers({
 
 Template.customersListItem.events({
   'click .list-group-item': function(event, template) {
-    Session.set('selected_user', this._id);
+    Session.set('selected_customer', this._id);
     Session.set('current_task', 'view');
     Session.set('global_edit', false);
   }

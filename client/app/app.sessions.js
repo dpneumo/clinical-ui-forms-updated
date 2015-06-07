@@ -1,5 +1,5 @@
 Session.set('account_search_term', '');
-Session.set('selected_user', '');
+Session.set('selected_customer', '');
 
 Session.set('global_edit', false);
 

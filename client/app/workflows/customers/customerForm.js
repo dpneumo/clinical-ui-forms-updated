@@ -6,7 +6,7 @@ doEvent = function(fieldName, state){
 addOkAndCancelEvents = function(fieldName){
   okCancelEvents('#'+fieldName+'Input', {
     ok: function(value) {
-      CustomerAccounts.update(Session.get('selected_user'), {
+      CustomerAccounts.update(Session.get('selected_customer'), {
         $set: {
           fieldName: value
         }
@@ -77,8 +77,8 @@ Template.customerForm.helpers({
   isDeletingTask: function() {
     return Session.get('current_task') === 'delete'
   },
-  user: function() {
-    console.log('getting user...');
+  customer: function() {
+    console.log('getting customer...');
     try {
       if (Session.get('current_task') == 'new') {
         return {
@@ -96,7 +96,7 @@ Template.customerForm.helpers({
           "Web": ""
         };
       } else {
-        return CustomerAccounts.findOne(Session.get('selected_user'));
+        return CustomerAccounts.findOne(Session.get('selected_customer'));
       }
     } catch (error) {
       console.log(error);

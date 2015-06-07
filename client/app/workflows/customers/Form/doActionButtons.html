@@ -1,0 +1,19 @@
+<template name="doActionBtns">
+  {{#if isNewTask}}
+    <div class="padded col col-lg-12 with-bottom-padding">
+      {{> createCustomerBtn}}
+    </div>
+  {{/if}}
+
+  {{#if isEditingTask}}
+    <div class="padded col col-lg-12 with-bottom-padding">
+      {{> updateCustomerBtn}}
+    </div>
+  {{/if}}
+
+  {{#if isDeletingTask}}
+    <div class="padded col col-lg-12 with-bottom-padding">
+      {{> deleteCheck}}
+    </div>
+  {{/if}}
+</template>
