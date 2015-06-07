@@ -1,7 +1,4 @@
 // Shared Methods
-initSessionEditVar = function(fieldName){
-  Session.set('editing_' + fieldName, false);
-};
 doEvent = function(fieldName, state){
   Session.set('editing_' + fieldName, state);
   Meteor.flush();
@@ -41,9 +38,6 @@ var fields = [
   'week', 'time', 'number', 'color'
 ];
 fields.forEach(function(fieldName){
-  // Init Sessions Variables
-  initSessionEditVar(fieldName);
-
   // Events for field
   var clickEventName = 'click #' + fieldName + 'Input'
   var mouseoutEventName = 'mouseout #' + fieldName + 'Input'
