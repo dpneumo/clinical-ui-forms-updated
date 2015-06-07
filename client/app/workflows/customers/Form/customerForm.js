@@ -41,18 +41,20 @@ fields.forEach(function(fieldName){
   // Events for field
   var clickEventName = 'click #' + fieldName + 'Input'
   var mouseoutEventName = 'mouseout #' + fieldName + 'Input'
+
   Template.customerForm.events({
     // Desktop Clicks - Editing
     clickEventName: function(){doEvent(fieldName, true)},
     // Mobile Tabs - Editing
     mouseoutEventName: function(){doEvent(fieldName, false)}
   });
+
   Template.customerForm.events(
     // Submit or Stop Editing
     addOkAndCancelEvents(fieldName)
   );
 
-  // Helpers for field
+  // Helpers for fields
   var fnName = fieldName + '_enabled'
   Template.customerForm.helpers({
     fnName: function(){fieldEnabled(fieldName)}
@@ -67,15 +69,6 @@ Template.customerForm.helpers({
     } else {
       return "readonly";
     }
-  },
-  isNewTask: function() {
-    return Session.get('current_task') === 'new'
-  },
-  isEditingTask: function() {
-    return Session.get('current_task') === 'edit'
-  },
-  isDeletingTask: function() {
-    return Session.get('current_task') === 'delete'
   },
   customer: function() {
     console.log('getting customer...');
@@ -101,5 +94,18 @@ Template.customerForm.helpers({
     } catch (error) {
       console.log(error);
     }
+  }
+});
+
+// DoActionBtn Helpers
+Template.doActionBtns.helpers({
+  isNewTask: function() {
+    return Session.get('current_task') === 'new'
+  },
+  isEditingTask: function() {
+    return Session.get('current_task') === 'edit'
+  },
+  isDeletingTask: function() {
+    return Session.get('current_task') === 'delete'
   }
 });
