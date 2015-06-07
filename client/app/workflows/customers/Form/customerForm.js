@@ -20,13 +20,13 @@ addOkAndCancelEvents = function(fieldName){
   })
 };
 fieldEnabled = function(fieldName){
-  if (Session.get('global_edit')) {
-    return "enabled";
-  } else if (Session.get('editing_'+fieldName)) {
-      return "enabled";
-    } else {
-      return "readonly";
-    }
+  var globalEdit = Session.get('global_edit');
+  var editingField = Session.get('editing_'+fieldName);
+  if (globalEdit || editingField) {
+    return "enabled"
+  } else {
+    return "readonly"
+  };
 };
 
 // Field Events & Helpers
