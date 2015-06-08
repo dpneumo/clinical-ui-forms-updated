@@ -37,7 +37,6 @@ Meteor.methods({
           Email: options.Email,
           Web: options.Web
         });
-      Meteor.flush();
     }catch(error){
       console.log(error);
     }
@@ -65,7 +64,6 @@ Meteor.methods({
           Email: options.Email,
           Web: options.Web
         });
-      Meteor.flush();
     }catch(error){
       console.log(error);
     }
@@ -75,7 +73,6 @@ Meteor.methods({
     try{
       console.log('deleted a customer: ' + JSON.stringify(selectedCustomer));
       return CustomerAccounts.remove( {_id: selectedCustomer} );
-      Meteor.flush();
     }catch(error){
       console.log(error);
     }

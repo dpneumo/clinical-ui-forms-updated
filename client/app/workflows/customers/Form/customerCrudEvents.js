@@ -46,6 +46,7 @@ Template.customerForm.events({
         console.log(error);
       };
     Session.set('current_task', 'view');
+    Meteor.flush();
     };
   },
 
@@ -82,6 +83,7 @@ Template.customerForm.events({
       console.log(error);
     };
     Session.set('current_task', 'view');
+    Meteor.flush();
   },
 
   'click #deleteCustomerButton': function() {
@@ -95,9 +97,11 @@ Template.customerForm.events({
       console.log(error);
     };
     Session.set('current_task', 'view');
+    Meteor.flush();
   },
 
   'click #cancelDeleteButton': function() {
     Session.set('current_task', 'view');
+    Meteor.flush();
   }
 });

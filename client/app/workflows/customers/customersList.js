@@ -5,7 +5,6 @@ Template.customersList.helpers({
   customersList: function() {
     try {
       return CustomerAccounts.find({
-        //FirstName: { $regex: Session.get('account_search_term'), $options: 'i' }
         $or: [{
           'FirstName': {
             $regex: Session.get('account_search_term'),
@@ -18,7 +17,7 @@ Template.customersList.helpers({
           }
         }]
       }, {
-        limit: 10
+        limit: 10, sort: {FullName: 1}
       });
     } catch (error) {
       console.log(error);
@@ -32,6 +31,14 @@ Template.customersListItem.events({
     Session.set('selected_customer', this._id);
     Session.set('current_task', 'view');
     Session.set('global_edit', false);
+  }
+});
+
+Template.customersListItem.helpers({
+  'selectedClass': function(){
+   if(this._id == Session.get('selected_customer')){
+      return "active"
+    };
   }
 });
 
