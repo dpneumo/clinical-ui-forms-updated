@@ -15,3 +15,4 @@ Session.set('editing_phone', false);
 Session.set('editing_fax', false);
 Session.set('editing_email', false);
 Session.set('editing_web', false);
+Session.set('editing_notes', false);

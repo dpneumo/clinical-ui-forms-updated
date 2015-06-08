@@ -29,6 +29,7 @@ Template.customerForm.events({
             Fax: $('#faxInput').val(),
             Email: $('#emailInput').val(),
             Web: $('#webInput').val(),
+            Notes: $('#notesInput').val(),
             // Sample fields
             Password: $('#passwordInput').val(),
             Date: $('#dateInput').val(),
@@ -67,6 +68,7 @@ Template.customerForm.events({
           Fax: $('#faxInput').val(),
           Email: $('#emailInput').val(),
           Web: $('#webInput').val(),
+          Notes: $('#notesInput').val(),
           //Sample fields
           Password: $('#passwordInput').val(),
           Date: $('#dateInput').val(),

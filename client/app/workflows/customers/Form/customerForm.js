@@ -33,7 +33,7 @@ fieldEnabled = function(fieldName){
 var fields = [
   'first_name', 'last_name', 'company',
   'address', 'city', 'county', 'state',
-  'zip', 'phone', 'fax', 'email', 'web',
+  'zip', 'phone', 'fax', 'email', 'web', 'notes',
   'password', 'date', 'datetime', 'month',
   'week', 'time', 'number', 'color'
 ];
@@ -86,10 +86,13 @@ Template.customerForm.helpers({
           "Phone": "",
           "Fax": "",
           "Email": "",
-          "Web": ""
+          "Web": "",
+          "Notes": ""
         };
       } else {
-        return CustomerAccounts.findOne(Session.get('selected_customer'));
+        var custData = CustomerAccounts.findOne(Session.get('selected_customer'));
+        //console.log(custData)
+        return custData;
       }
     } catch (error) {
       console.log(error);

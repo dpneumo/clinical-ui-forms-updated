@@ -35,7 +35,8 @@ Meteor.methods({
           Phone: options.Phone,
           Fax: options.Fax,
           Email: options.Email,
-          Web: options.Web
+          Web: options.Web,
+          Notes: options.Notes
         });
     }catch(error){
       console.log(error);
@@ -62,7 +63,8 @@ Meteor.methods({
           Phone: options.Phone,
           Fax: options.Fax,
           Email: options.Email,
-          Web: options.Web
+          Web: options.Web,
+          Notes: options.Notes
         });
     }catch(error){
       console.log(error);
